@@ -1,0 +1,484 @@
+/*
+ Copyright 2025 Google LLC
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      https://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
+body,
+html {
+  background: #121212;
+  overflow: hidden;
+}
+
+.game-container {
+  position: fixed;
+  outline: 1px solid #fff;
+  display: block;
+  /* width: 768px; */
+  width: 2560px;
+  height: 1408px;
+  transform: scale(0.5);
+  transform-origin: top left;
+}
+
+table.state {
+  table-layout: fixed;
+  color: #FFFFFF;
+  position: fixed;
+  /* margin: auto; */
+  /* top: 1000; */
+  bottom: 10px;
+  left: 1380px;
+  font-family: Verdana, sans-serif;
+  font-size: 24px;
+  border-collapse: collapse;
+  border: none;
+  width: 7;
+}
+
+table.scoreboard {
+  table-layout: fixed;
+  color: #FFFFFF;
+  position: fixed;
+  bottom: 30px;
+  left: 1600px;
+  right: 0;
+  font-family: Verdana, sans-serif;
+  font-size: 24px;
+  border-collapse: collapse;
+  border: none;
+  width: 7;
+}
+
+table.pitcherStats {
+  table-layout: fixed;
+  color: #FFFFFF;
+  position: fixed;
+  bottom: 30px;
+  right: 50px;
+  font-family: Verdana, sans-serif;
+  font-size: 24px;
+  border-collapse: collapse;
+  border: none;
+  width: 7;
+}
+
+table.batterStats {
+  table-layout: fixed;
+  color: #FFFFFF;
+  position: fixed;
+  bottom: 30px;
+  left: 50px;
+  right: 0;
+  font-family: Verdana, sans-serif;
+  font-size: 24px;
+  border-collapse: collapse;
+  border: none;
+  width: 7;
+}
+
+.battingOrderUI {
+  left: 70px;
+  top: 130px;
+  position: fixed;
+  width: 460px;
+
+  padding: 1ch 4ch;
+  color: white;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-stretch: ultra-condensed;
+  font-size: 30px;
+  font-weight: 100;
+}
+
+.battingOrderOpen {
+  bottom: 350px;
+}
+
+.battingOrderDropdown {
+  left: 70px;
+  top: 130px;
+  width: auto;
+  vertical-align: bottom;
+  position: fixed;
+  opacity: 1;
+  padding: 1ch 1ch;
+  color: white;
+  font-size: 30px;
+  font-weight: 100;
+}
+
+.arrowClosed {
+  transform: rotate(0deg);
+}
+
+.arrowOpen {
+  transform: rotate(90deg);
+}
+
+table.battingOrder {
+  table-layout: fixed;
+  color: #FFFFFF;
+  position: fixed;
+  top: 190px;
+  bottom: 0;
+  left: 75px;
+  right: 0;
+  font-family: Verdana, sans-serif;
+  font-size: 24px;
+  border-collapse: collapse;
+  border: none;
+  width: 7;
+}
+
+tr {
+  vertical-align: bottom;
+}
+
+th {
+  opacity: 1;
+  padding: 1.7ch 0.5ch;
+  text-align: center;
+  border: none;
+  border-bottom: 2px solid white;
+  text-align: bottom;
+}
+
+th.name {
+  border-right: 1px solid white;
+  text-align: left;
+}
+
+th.pos {
+  text-align: left;
+}
+
+th.empty {
+  border-bottom: none;
+  text-align: left;
+}
+
+td {
+  opacity: 1;
+  padding: 1.55ch 0.6ch;
+  text-align: center;
+}
+
+td.pos {
+  text-align: left;
+}
+
+td.hand {
+  text-align: left;
+}
+
+
+td.name {
+  text-align: left;
+  font-weight: bold;
+  border-right: 1px solid white;
+}
+
+span.button-title {
+  text-align: center;
+}
+
+.fontDefaults {
+  color: white;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 38px;
+
+  /* Make sure the user can't accidentally start text selection when trying to use the option selection dialog. */
+  user-select: none;
+}
+
+.outcome {
+  position: absolute;
+  font-size: 60px;
+  font-weight: bold;
+  left: 250px;
+  bottom: 100px;
+  width: 1000px;
+  display: flex;
+  z-index: 1010;
+}
+
+.optionSelectionDefault {
+  position: absolute;
+  left: 1000px;
+  top: 200px;
+  width: 460px;
+  height: 800px;
+
+  padding: 1ch;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+
+}
+
+.optionSelection-header {
+  margin-bottom: 2ch;
+}
+
+.optionSelection-pitching {
+  left: 1400px;
+}
+
+.optionSelection-batting {
+  left: 700px;
+}
+
+.geminiSpark {
+  margin-top: 10px;
+  height: 40px;
+}
+
+div.title {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 0.5ch;
+}
+
+.optionSelectionButtonContainer {
+  display: flex;
+  /* Horizontal centering */
+  justify-content: space-around;
+  margin-top: 1.5ch;
+  margin-bottom: 1.5ch;
+}
+
+.optionSelectionButtonContainer button {
+  padding: 1ch 1.5ch;
+  cursor: pointer;
+  overflow: visible;
+}
+
+.acceptButton {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+}
+
+.coaching-pitching {
+  text-align: column;
+}
+
+.coaching-batting {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.coachHead {
+  position: absolute;
+  z-index: 1001;
+  top: -50px;
+}
+
+.coachHead-pitching {
+  right: -50px;
+}
+
+.coachHead-batting {
+  left: -50px;
+}
+
+.coachLogo {
+  width: 250px;
+}
+
+.coachLogo-pitching {
+  margin-top: 1ch;
+}
+
+.coachLogo-batting {
+  margin-top: 1ch;
+  margin-right: 1ch;
+}
+
+.coachTitle {
+  font-weight: bold;
+  margin-bottom: 7ch;
+}
+
+.coachTitle-pitching {
+  margin-left: 70px;
+  text-align: left;
+}
+
+.coachTitle-batting {
+  margin-right: 20px;
+  text-align: right;
+}
+
+
+.redBorder {
+  /* Remove default border */
+  border: none;
+
+  box-shadow: 1px 1px #e7dfe7, -1px -1px #e7dfe7, 1px -1px #e7dfe7,
+    -1px 1px #e7dfe7, 0 -2px #9c9a9c, -2px 0 #7b757b, 0 2px #424542;
+  /* Add red gradient border */
+  border-image: linear-gradient(to right, #ff0000, #8b0000) 1;
+  border-style: solid;
+  border-width: 5px;
+  /* Adjust border width as needed */
+}
+
+.blueBorder {
+  /* Remove default border */
+  border: none;
+
+  box-shadow: 1px 1px #e7dfe7, -1px -1px #e7dfe7, 1px -1px #e7dfe7,
+    -1px 1px #e7dfe7, 0 -2px #9c9a9c, -2px 0 #7b757b, 0 2px #424542;
+  /* Add red gradient border */
+  border-image: linear-gradient(to right, #04009d, #06004d) 1;
+  border-style: solid;
+  border-width: 5px;
+  /* Adjust border width as needed */
+}
+
+.greyGradient {
+  color: #eff1ff;
+  text-shadow: 2px 2px #212421,
+    1px 1px #212021;
+
+  border: solid 1px #424542;
+  box-shadow: 1px 1px #e7dfe7,
+    -1px -1px #e7dfe7,
+    1px -1px #e7dfe7,
+    -1px 1px #e7dfe7,
+    0 -2px #9c9a9c,
+    -2px 0 #7b757b,
+    0 2px #424542;
+
+  background: linear-gradient(to bottom, #808080 0%, #404040 100%);
+
+  border-radius: 7px;
+}
+
+.redGradient {
+  color: #eff1ff;
+  text-shadow: 2px 2px #212421,
+    1px 1px #212021;
+
+  border: solid 1px #424542;
+  box-shadow: 1px 1px #e7dfe7,
+    -1px -1px #e7dfe7,
+    1px -1px #e7dfe7,
+    -1px 1px #e7dfe7,
+    0 -2px #9c9a9c,
+    -2px 0 #7b757b,
+    0 2px #424542;
+
+  background: linear-gradient(to bottom, #ff0000 0%, #8b0000 100%);
+  border-radius: 7px;
+}
+
+.blueGradient {
+  color: #eff1ff;
+  text-shadow: 2px 2px #212421,
+    1px 1px #212021;
+
+  border: solid 1px #424542;
+  box-shadow: 1px 1px #e7dfe7,
+    -1px -1px #e7dfe7,
+    1px -1px #e7dfe7,
+    -1px 1px #e7dfe7,
+    0 -2px #9c9a9c,
+    -2px 0 #7b757b,
+    0 2px #424542;
+
+  background: linear-gradient(to bottom, #04009d 0%, #06004d 100%);
+  border-radius: 7px;
+}
+
+.fade-in {
+  animation: scene-transition-fade-in 0.5s forwards;
+}
+
+@keyframes scene-transition-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-out {
+  animation: scene-transition-fade-out 0.5s forwards;
+}
+
+@keyframes scene-transition-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.playerNameBar {
+  color: white;
+  position: fixed;
+  top: 20px;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 60px;
+  font-weight: 100;
+}
+
+.batterName {
+  left: 700px;
+}
+
+.batterPosition {
+  left: 50px;
+  font-variant: small-caps;
+}
+
+.pitcherName {
+  right: 700px;
+  text-align: right;
+}
+
+.pitcher {
+  right: 50px;
+  font-variant: small-caps;
+}
+
+.playerUIBar {
+  color: white;
+  position: fixed;
+  bottom: 40px;
+  font-family: 'Arial Narrow', Arial, sans-serif;
+  font-size: 120px;
+  font-weight: 700;
+}
+
+.greyTransparentBG {
+  background-color: rgba(50, 50, 50, 0.7);
+}
+
+/* this makes the text for any children of the .greyTransparentBG fully opaque  */
+.greyTransparentBG * {
+  opacity: 1;
+}
