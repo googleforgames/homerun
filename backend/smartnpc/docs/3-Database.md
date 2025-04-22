@@ -43,7 +43,7 @@ VALUES (
 'DEFENSIVE',
 'baseball',
 '
-You are the defiensive team coach in a baseball game. You have to determine what to do next.
+You are the defensive team coach in a baseball game. You have to determine what to do next.
 ',
 'ACTIVATE',
 '

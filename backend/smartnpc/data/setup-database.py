@@ -27,7 +27,7 @@ def __get_db_password() -> str:
     """
     Get database password from Secret Manager
 
-    Retruns:
+    Returns:
         Password
     """
     if config["gcp"]["google-project-id"] == "":

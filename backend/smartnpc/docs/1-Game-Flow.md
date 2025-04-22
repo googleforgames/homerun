@@ -12,8 +12,8 @@ Game Frontend ->> Game Frontend: new_game()
 Game Frontend ->> Smart NPC API: get_lineup(team.id)
 Smart NPC API ->> Game Frontend: lineup
 else Get Suggestions
-Game Frontend ->> Game Frontend: get_linup(player team)
-Game Frontend ->> Game Frontend: get_linup(computer team)
+Game Frontend ->> Game Frontend: get_lineup(player team)
+Game Frontend ->> Game Frontend: get_lineup(computer team)
 Game Frontend ->> Smart NPC API: get_tactic_suggestion(payload:{player lineup, computer lineup)
 Smart NPC API ->> Smart NPC API: construct prompt(scene_id, player lineup, computer lineup)
 Smart NPC API ->> Gemini: get response

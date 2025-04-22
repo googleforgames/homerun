@@ -80,7 +80,7 @@ def text_embedding(
         print("[Info]NO Embedding Task Type")
         embeddings = model.get_embeddings([text])
     else:
-        print("[Info]Using Emgedding Task Type")
+        print("[Info]Using Embedding Task Type")
         text_embedding_input = TextEmbeddingInput(
             task_type=task_type, title=title, text=text)
         embeddings = model.get_embeddings([text_embedding_input])

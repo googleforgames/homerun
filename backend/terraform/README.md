@@ -17,7 +17,7 @@ where the player plays the coach of a baseball team.
 The `NPC` which powered by the LLM
 provides tactics suggestions to the player.
 
-## Applicaiton Flow
+## Application Flow
 
 [Smart NPC API flow](./docs/0-SmartNPC-API-Flow.md)
 
