@@ -51,7 +51,7 @@ connector = Connector()
 # function to return the database connection object
 def getconn():
     """
-    Opens datanase connection
+    Opens database connection
 
     Retruns:
         Opened connection object
