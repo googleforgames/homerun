@@ -18,7 +18,7 @@ This module provides a class for managing scenes, including retrieving
 scene configurations and caching them for efficient access.
 """
 
-from models.scence import Scene
+from models.scene import Scene
 from utils.cacheWrapper import CacheFactory
 from utils.database import DataConnection
 
@@ -43,7 +43,7 @@ class SceneManager():
         """
         return f"{game_id}/{scene_id}"
 
-    def get_scence(self,
+    def get_scene(self,
                    game_id:str,
                    scene_id:str) -> Scene:
         """

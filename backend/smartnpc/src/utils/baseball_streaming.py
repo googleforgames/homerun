@@ -30,7 +30,7 @@ from google import genai
 from google.genai import types
 from utils.sceneManager import SceneManager
 from utils.promptManager import PromptManager
-from models.scence import NPCSceneConversationRequest
+from models.scene import NPCSceneConversationRequest
 
 TOML_PATH = "config.toml" if os.environ["CONFIG_TOML_PATH"] == "" else os.environ["CONFIG_TOML_PATH"] # pylint: disable=line-too-long
 with open(TOML_PATH, "rb") as f:
@@ -174,7 +174,7 @@ async def chat_streaming(req:NPCSceneConversationRequest,
                 "message":f"* get_scene: {req.scene_id} | {req.game_id}" # pylint: disable=logging-fstring-interpolation
             }
         )
-        scene = SceneManager(config=config).get_scence(
+        scene = SceneManager(config=config).get_scene(
             game_id=req.game_id,
             scene_id=req.scene_id
         )

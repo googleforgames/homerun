@@ -50,7 +50,7 @@ from models.baseball import (
     Roster,
     GetSuggestionsRequest
 )
-from models.scence import (
+from models.scene import (
     NPCSceneConversationRequest,
     NPCSceneConversationResponse
 )

@@ -20,7 +20,7 @@ conversation examples and handling multi-turn interactions with an LLM.
 
 import logging
 
-from models.scence import (
+from models.scene import (
     NPCSceneConversationRequest
 )
 from models.prompt import PromptRetrievalResponse

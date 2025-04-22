@@ -207,7 +207,7 @@ class PromptManager():
                                prompt_template:PromptRetrievalResponse
                             ) -> PromptRetrievalResponse:
         scene_manager = SceneManager(config=self._config)
-        scene = scene_manager.get_scence(
+        scene = scene_manager.get_scene(
             game_id=prompt_template.game_id,
             scene_id=prompt_template.scene_id
         )

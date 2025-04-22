@@ -27,7 +27,7 @@ import logging
 import json
 
 from fastapi import APIRouter, HTTPException
-from models.scence import (
+from models.scene import (
     NPCSceneConversationRequest,
     NPCSceneConversationResponse,
     Scene
@@ -38,7 +38,7 @@ from utils.conversationManager import ConversationManager
 from utils.sceneManager import SceneManager
 from utils.promptManager import PromptManager
 
-router = APIRouter(prefix="/scenes", tags=["SCENCE - Conversations"])
+router = APIRouter(prefix="/scenes", tags=["SCENE - Conversations"])
 
 # Load configuration file (config.toml) and global configs
 TOML_PATH = "config.toml" if os.environ["CONFIG_TOML_PATH"] == "" else os.environ["CONFIG_TOML_PATH"] # pylint: disable=line-too-long
@@ -84,7 +84,7 @@ def ensure_json_dict(input_text:any) -> dict:
 @router.get(
     path="/{scene_id}"
 )
-def get_scence(game_id:str, scene_id:str) -> Scene:
+def get_scene(game_id:str, scene_id:str) -> Scene:
     """
     Get Scene configuration.
     Args:
@@ -97,7 +97,7 @@ def get_scence(game_id:str, scene_id:str) -> Scene:
     if game_id != config["game"]["game_id"]:
         raise ValueError("Invalid game id.")
     try:
-        scene = SceneManager(config=config).get_scence(
+        scene = SceneManager(config=config).get_scene(
             game_id=game_id,
             scene_id=scene_id
         )
@@ -125,7 +125,7 @@ def chat(req:NPCSceneConversationRequest) -> NPCSceneConversationResponse:
     scene = None
     if req.scene_id:
         logging.info({"message":f"* get_scene: {req.scene_id} | {req.game_id}"})
-        scene = get_scence(scene_id=req.scene_id,
+        scene = get_scene(scene_id=req.scene_id,
                            game_id=req.game_id)
 
     if scene is None:
@@ -153,9 +153,9 @@ def chat(req:NPCSceneConversationRequest) -> NPCSceneConversationResponse:
     # player = get_player_info()
 
     if scene.goal != "" and scene.goal != "NA":
-        prompt_template_id = "NPC_CONVERSATION_SCENCE_GOAL_TEMPLATE"
+        prompt_template_id = "NPC_CONVERSATION_SCENE_GOAL_TEMPLATE"
     else:
-        prompt_template_id = "NPC_CONVERSATION_SCENCE_NO_GOAL_TEMPLATE"
+        prompt_template_id = "NPC_CONVERSATION_SCENE_NO_GOAL_TEMPLATE"
 
     prompt_manager = PromptManager(config=config)
     prompt_template = prompt_manager.construct_prompt(

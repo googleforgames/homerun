@@ -92,7 +92,7 @@ founds the placeholder entry in the `prompt_template` table.
 INSERT INTO smartnpc.prompt_template(prompt_id, game_id, scene_id,
 prompt_template, is_activate)
 VALUES (
-'NPC_CONVERSATION_SCENCE_GOAL_TEMPLATE',
+'NPC_CONVERSATION_SCENE_GOAL_TEMPLATE',
 'baseball',
 'LINEUP_SUGGESTIONS',
 '# SYSTEM
