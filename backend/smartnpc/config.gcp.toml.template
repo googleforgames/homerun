@@ -1,0 +1,13 @@
+["gcp"]
+database_private_ip_address=""
+database_public_ip_address=""
+postgres_instance_connection_name=""
+database_user_name=""
+database_password_key=""
+image_upload_gcs_bucket=""
+google-project-id=""
+cache-server-host = ""
+cache-server-port = 6379
+use-cache-server = ""
+google-default-region = ""
+api-key = ""

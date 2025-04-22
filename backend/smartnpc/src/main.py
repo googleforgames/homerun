@@ -55,8 +55,8 @@ app = FastAPI(debug=True)
 
 origins = [
     "http://localhost:8080",
-    "http://localhost",
-    "http://104.197.253.75"
+    "http://localhost:8081",
+    "*"
 ]
 
 # @app.middleware("http")

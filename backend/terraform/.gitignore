@@ -4,6 +4,7 @@ terraform.tfstate
 terraform.tfstate.backup
 variables.tfvars
 terraform.tfvars
+.terraform.tfstate.lock.info
 
 # Python Environment
 .venv/

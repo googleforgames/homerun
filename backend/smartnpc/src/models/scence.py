@@ -1,7 +1,7 @@
 """
-FastAPI NPC chat in a scence Request / Response Models
+FastAPI NPC chat in a scene Request / Response Models
 """
-# Copyrightll 2025 Google LLC
+# Copyright 2025 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

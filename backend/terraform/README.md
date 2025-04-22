@@ -46,7 +46,7 @@ Google Cloud for which you have IAM permissions to deploy resources into.
 ```shell
 git clone https://github.com/googleforgames/homerun.git
 
-cd homerun
+cd homerun/backend
 ```
 
 ### 2) Set ENV variable
@@ -139,8 +139,6 @@ gcloud container clusters get-credentials smartnpc --region us-central1 \
 Test your Kubernetes client credentials.
 
 ```shell
-gcloud container clusters get-credentials smartnpc --region us-central1 \
---project ${PROJECT_ID:?}
 kubectl get nodes
 ```
 
@@ -170,15 +168,28 @@ Deploy the Smart NPC backend
 
 ```shell
 gcloud container clusters get-credentials smartnpc --region ${LOCATION} \
---project ${PROJECT_ID}$
+--project ${PROJECT_ID}
 
-kubectl apply -f ../smartnpc/k8s.yaml
+kubectl create ns genai
 
 kubectl create configmap -n genai \
   smart-npc-config --from-file=../smartnpc/config.toml
+
+kubectl apply -f ../smartnpc/k8s.yaml
+
 ```
 
-### 8) Verify the deployment and retrieve the key configuration values
+### 8) Get Backend Endpoint and API Key
+
+Wait until Load balancer gets created, you can check the status by
+running the following command.
+
+```shell
+kubectl get svc -n genai
+
+# NAME                TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+# smart-npc-ssl-svc   LoadBalancer   1.2.3.4          x.x.x.x     80:30381/TCP   2m13s
+```
 
 Access the API - You can test the application and all the APIs from here  :)
 
@@ -246,6 +257,10 @@ gcloud config set project ${PROJECT_ID:?}
 ```
 
 and follow the authentication flow.
+
+### Identity Pool does not exist
+
+If you see this error, wait for 5 minutes till the Identity pool is created.
 
 ---
 

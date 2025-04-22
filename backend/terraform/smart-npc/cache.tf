@@ -26,6 +26,6 @@ resource "google_redis_instance" "cache" {
   display_name  = "NPC Cache"
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }

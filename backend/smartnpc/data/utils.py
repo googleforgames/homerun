@@ -31,7 +31,7 @@ EMBEDDING_MODEL_NAME = "text-multilingual-embedding-002"    # pylint: disable=li
 TEXT_GENERATION_MODEL_NAME = "gemini-1.5-flash-001"
 
 def get_config() -> dict:
-    path = os.environ.get("DATA_INGESTION_TOML_PATH", "config.toml")
+    path = os.environ.get("DATA_INGESTION_TOML_PATH", "setup/config.toml")
 
     with open(path, "rb") as f:
         config = tomllib.load(f)
@@ -77,7 +77,7 @@ def text_embedding(
     """
     model = TextEmbeddingModel.from_pretrained(model_name)
     if task_type == "" or task_type is None:
-        print("[Info]NO Emgedding Task Type")
+        print("[Info]NO Embedding Task Type")
         embeddings = model.get_embeddings([text])
     else:
         print("[Info]Using Emgedding Task Type")
@@ -128,7 +128,7 @@ def ask_llm(query:str,
             prompt:str=None,
             stop:list[str]=None) -> str:
     """
-    Invoke Large langiage model to generate prediction
+    Invoke Large language model to generate prediction
 
 
     Args:

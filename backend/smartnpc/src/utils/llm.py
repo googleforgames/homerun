@@ -56,7 +56,7 @@ def text_embedding(
     """
     model = TextEmbeddingModel.from_pretrained(model_name)
     if task_type == "" or task_type is None:
-        logger.info("[Info]NO Emgedding Task Type")
+        logger.info("[Info]NO Embedding Task Type")
         embeddings = model.get_embeddings([text])
     else:
         text_embedding_input = TextEmbeddingInput(

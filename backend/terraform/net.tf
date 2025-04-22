@@ -34,16 +34,8 @@ module "vpc" {
   secondary_ranges = {
     "sn-usc1" = [
       {
-        range_name    = "sn-usc1-pods1"
-        ip_cidr_range = "10.11.0.0/20"
-      },
-      {
-        range_name    = "sn-usc1-svcs1"
-        ip_cidr_range = "10.111.0.0/25"
-      },
-      {
-        ip_cidr_range = "10.54.0.0/17"
-        range_name    = "gke-smartnpc-pods-40dae0ee"
+        range_name    = "gke-smartnpc-pods-077c3cde"
+        ip_cidr_range = "10.15.0.0/17"
       }
     ]
   }

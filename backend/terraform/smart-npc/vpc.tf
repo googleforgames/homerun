@@ -97,18 +97,21 @@ resource "google_compute_global_address" "https_static_ip_address" {
   name = "smart-npc-https-ip"
 }
 
-resource "google_dns_managed_zone" "smart-npc-zone" {
-  name        = "smart-npc-zone"
-  dns_name    = "gdc-demo.com."
-  description = "Gemini powered NPC Demo Zone"
-}
+# Uncomment the following if you want to use HTTPS LB
+# You must Update dns_name before applying.
 
-resource "google_dns_record_set" "smart-npc-https-api" {
-  name = "demo.${google_dns_managed_zone.smart-npc-zone.dns_name}"
-  type = "A"
-  ttl  = 300
+# resource "google_dns_managed_zone" "smart-npc-zone" {
+#   name        = "smart-npc-zone"
+#   dns_name    = "<YOUR-DOMAIN>.com."
+#   description = "Gemini powered NPC Demo Zone"
+# }
 
-  managed_zone = google_dns_managed_zone.smart-npc-zone.name
+# resource "google_dns_record_set" "smart-npc-https-api" {
+#   name = "demo.${google_dns_managed_zone.smart-npc-zone.dns_name}"
+#   type = "A"
+#   ttl  = 300
 
-  rrdatas = [google_compute_global_address.https_static_ip_address.address]
-}
+#   managed_zone = google_dns_managed_zone.smart-npc-zone.name
+
+#   rrdatas = [google_compute_global_address.https_static_ip_address.address]
+# }

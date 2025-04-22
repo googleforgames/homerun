@@ -37,21 +37,12 @@ locals {
   EOT
 }
 
-resource "local_file" "config-gcp" {
-  filename = "../smartnpc/config.gcp.toml.template"
-  content  = local.config_content
-}
-
 resource "local_file" "data-config-gcp" {
   filename = "../smartnpc/data/setup/config.toml"
   content  = local.config_content
 }
 
-
 resource "local_file" "generate_config_toml" {
   filename = "../smartnpc/config.toml"
-  content  = join(" ", [file("../smartnpc/config.gcp.toml.template"), file("../smartnpc/config.app.toml.template")])
-  depends_on = [
-    local_file.config-gcp
-  ]
+  content  = join(" ", [local.config_content, file("../smartnpc/config.app.toml.template")])
 }
