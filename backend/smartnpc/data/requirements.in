@@ -12,17 +12,31 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM python:3.11-slim
+# Create Database
+sqlalchemy
+google-cloud-secret-manager==2.16.4
+google-cloud-core==2.3.3
+cloud-sql-python-connector[asyncpg]
+pgvector==0.2.3
+pg8000==1.30.3
 
-# Allow statements and log messages to immediately appear in the Knative logs
-ENV PYTHONUNBUFFERED True
-
-WORKDIR /app
-
-COPY src /app/
-RUN pip install --no-cache-dir --require-hashes -r requirements.txt
-COPY ./config.toml /app/
-
-EXPOSE 8080
-
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+# Data ingestion
+pypdf==4.2.0
+cloud-sql-python-connector[pg8000]
+SQLAlchemy==2.0.7
+google-cloud-aiplatform>=1.38
+argparse
+# psycopg2
+psycopg2-binary
+pgvector
+unstructured
+tensorflow-hub
+tensorflow
+tensorflow_text
+google-cloud-secret-manager
+pandas
+asyncpg
+cloud-sql-python-connector[asyncpg]
+cloud-sql-python-connector[pymysql]
+numpy
+google-cloud-bigquery
