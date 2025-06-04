@@ -2,6 +2,7 @@
 [game]
 game_id = "baseball"
 enable_validator = "False"
+vllm_host = ""
 
 [npc]
 RESPONSE_LANGUAGE = "en-US"

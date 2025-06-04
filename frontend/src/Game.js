@@ -41,7 +41,7 @@ let backendClient = new SmartNPC({
 })
 
 // Name of the smart NPC game 'scene' that contains your prompt template. See
-// the smart NPC documentation for details. 
+// the smart NPC documentation for details.
 const sceneId = "TACTICS_SELECTION_20250317_011"
 // **************************************************************
 
@@ -469,7 +469,6 @@ function generateCoachingDisplay(oJSON, screen) {
   let tutorials = {}
   for (const p of Object.values(playersByTeamRole)) { // Loop through all players.
     p.currentRole = role(p, currentState.halfInning)
-
     tutorials[p.location] = {
       "screen": screen,
       "animation": "displayGeminiCoach",
@@ -481,7 +480,7 @@ function generateCoachingDisplay(oJSON, screen) {
         imgSrc: `/images/imagen3/${p.team.uiColor}/coach.png`,
         logoSrc: '/images/logos/Gemini_Logo_Lockup_Gradient.png',
         resolve: () => (
-          // Take action after the player clicks 'accept' on the coaching dialog. 
+          // Take action after the player clicks 'accept' on the coaching dialog.
           // For PoC, just log instead.
           console.log("resolving coaching dialog box")
         ),

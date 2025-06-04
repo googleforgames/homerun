@@ -337,7 +337,7 @@ async def chat_streaming(req:NPCSceneConversationRequest,
     )
     parser = ChunkParser(LLM_BACKEND=LLM_BACKEND)
     # ===
-    if True:
+    if False:
         text = """```json
 {
   "tactics": {
