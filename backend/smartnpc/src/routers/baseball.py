@@ -363,9 +363,11 @@ async def websocket_endpoint(websocket: WebSocket):
         }
     """
     await websocket.accept()
+    print("* websocket connection accepted")
     try:
         while True:
             data = await websocket.receive_text()
+            print(f"* websocket request received")
             obj = json.loads(data)
             temperature = obj["temperature"] if "temperature" in obj else 0
             print(f"* temperature={temperature}")

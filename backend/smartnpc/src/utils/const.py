@@ -15,4 +15,4 @@
 Constants
 """
 
-USE_QUICK_START = False  # Use Google for Games quickstart dispatcher
+LLM_BACKEND = "vLLM"# "vLLM" # "Gemini", "Quick-Start"

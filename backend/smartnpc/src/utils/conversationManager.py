@@ -24,7 +24,7 @@ from models.scene import (
     NPCSceneConversationRequest
 )
 from models.prompt import PromptRetrievalResponse
-from utils.const import USE_QUICK_START
+from utils.const import LLM_BACKEND
 from utils.cacheWrapper import CacheFactory
 from utils.database import DataConnection
 from utils.quickstartWrapper import quick_start_wrapper
@@ -166,14 +166,22 @@ class ConversationManager():
                 player_id=conversation.player_id
             )
         history = self._conversation_history.get(key=key)
-
-        if not USE_QUICK_START:
+        print(f"* LLM_BACKEND={LLM_BACKEND}")
+        if LLM_BACKEND == "vLLM":
+            from utils.vLLMGemma3Wrapper import vllm_gemma3_wrapper
+            model = vllm_gemma3_wrapper(
+                vllm_host=self._config["gcp"]["vllm_host"],
+                system_instruction=prompt.prompt_template
+            )
+            chat = model.start_chat(history=history)
+        elif LLM_BACKEND == "Gemini":
             model = GenerativeModel(
                 self._llm_model_name,
                 system_instruction=[prompt.prompt_template]
             )
             chat = model.start_chat(history=history)
-        else:
+        elif LLM_BACKEND == "Quick-Start":
+            from utils.quickstartWrapper import quick_start_wrapper
             model = quick_start_wrapper(
                 model_name=self._llm_model_name,
                 system_instruction=prompt.prompt_template,

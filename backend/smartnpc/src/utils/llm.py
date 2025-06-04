@@ -19,7 +19,7 @@ Wrapper of LLM operations.
 
 import logging
 
-from utils.const import USE_QUICK_START
+from utils.const import LLM_BACKEND
 from utils.quickstartWrapper import quick_start_wrapper
 from vertexai.language_models import TextEmbeddingInput, TextEmbeddingModel
 from vertexai.preview import generative_models
@@ -92,15 +92,19 @@ def ask_llm(prompt:str,
             generative_models.HarmCategory.HARM_CATEGORY_HARASSMENT: generative_models.HarmBlockThreshold.BLOCK_NONE,  # pylint: disable=line-too-long
         }
 
-    if not USE_QUICK_START:
+    if LLM_BACKEND == "vLLM":
+        raise NotImplementedError()
+
+    elif LLM_BACKEND == "Gemini":
         model = GenerativeModel(
             model_name,
             system_instruction=[""]
         )
-    else:
+    elif LLM_BACKEND == "Quick-Start":
+        from utils.quickstartWrapper import quick_start_wrapper
         model = quick_start_wrapper(
-                model_name=FLASH_MODEL_NAME,
-                system_instruction="",
+            model_name=model_name,
+            system_instruction="",
         )
 
     responses = model.generate_content(

@@ -1,0 +1,293 @@
+INFO:     Started server process [1688039]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8085 (Press CTRL+C to quit)
+INFO:     127.0.0.1:39856 - "OPTIONS /game/teams/all HTTP/1.1" 200 OK
+/usr/local/google/home/kalschi/solutions/backup/smart-npc-cleanup/homerun/backend/smartnpc/src/.venv/lib/python3.12/site-packages/google/cloud/sql/connector/refresh_utils.py:214: CryptographyDeprecationWarning: Properties that return a naïve datetime object have been deprecated. Please switch to not_valid_after_utc.
+  expiration = x509.not_valid_after
+* getting key=baseball/all/all
+self.__key(key)=game/baseball/all/all
+* no baseball/all/all:game/baseball/all/all
+INFO:     127.0.0.1:39856 - "GET /game/teams/all HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36534 - "OPTIONS /game/lineup HTTP/1.1" 200 OK
+/usr/local/google/home/kalschi/solutions/backup/smart-npc-cleanup/homerun/backend/smartnpc/src/.venv/lib/python3.12/site-packages/google/cloud/sql/connector/refresh_utils.py:214: CryptographyDeprecationWarning: Properties that return a naïve datetime object have been deprecated. Please switch to not_valid_after_utc.
+  expiration = x509.not_valid_after
+Updating lineup...<class 'dict'> | {'pitcher': {'name': 'Michael Nguyen', 'stats': {'this_season': {'GP': 16, 'GS': 15, 'CG': 3, 'SHO': 3, 'IP': 77.6, 'H': 99, 'R': 36, 'ER': 31, 'HR': 4, 'BB': 44, 'K': 91}, 'career': {'GP': 176, 'GS': 150, 'CG': 9, 'SHO': 12, 'IP': 771.7, 'H': 1062, 'R': 361, 'ER': 310, 'HR': 34, 'BB': 521, 'K': 874}}}, 'fielders': [{'position': 'CF', 'name': 'Ryuichi Suzuki', 'hand': 'Left', 'avg': 0.315, 'hr': 9, 'rbi': 51, 'notes': 'High average, contact hitter, limited power.'}, {'position': '2B', 'name': 'Robert Ackley', 'hand': 'Left', 'avg': 0.226, 'hr': 12, 'rbi': 50, 'notes': 'Some power, but struggled with consistency.'}, {'position': 'C', 'name': 'Jon Montero', 'hand': 'Left', 'avg': 0.26, 'hr': 15, 'rbi': 62, 'notes': 'Developing power hitter, still inconsistent.'}, {'position': '1B', 'name': 'Mark Smoak', 'hand': 'Both', 'avg': 0.217, 'hr': 19, 'rbi': 51, 'notes': 'Switch-hitter, power potential, low average.'}, {'position': 'DH', 'name': 'Joel Carp', 'hand': 'Left', 'avg': 0.213, 'hr': 5, 'rbi': 18, 'notes': 'Limited at-bats, low batting average.'}, {'position': '3B', 'name': 'Richard Seager', 'hand': 'Left', 'avg': 0.259, 'hr': 20, 'rbi': 86, 'notes': 'Good power for a middle infielder.'}, {'position': 'RF', 'name': 'Brett Saunders', 'hand': 'Left', 'avg': 0.247, 'hr': 19, 'rbi': 57, 'notes': 'Power and speed, high strikeout rate.'}, {'position': 'LF', 'name': 'Paul Wells', 'hand': 'Right', 'avg': 0.228, 'hr': 10, 'rbi': 36, 'notes': 'Power potential, but inconsistent contact overall.'}, {'position': 'SS', 'name': 'James Ryan', 'hand': 'Right', 'avg': 0.194, 'hr': 3, 'rbi': 31, 'notes': 'Very weak hitter, almost no power.'}]}
+INFO:     127.0.0.1:36534 - "POST /game/lineup HTTP/1.1" 200 OK
+INFO:     127.0.0.1:36534 - "OPTIONS /game/lineup HTTP/1.1" 200 OK
+/usr/local/google/home/kalschi/solutions/backup/smart-npc-cleanup/homerun/backend/smartnpc/src/.venv/lib/python3.12/site-packages/google/cloud/sql/connector/refresh_utils.py:214: CryptographyDeprecationWarning: Properties that return a naïve datetime object have been deprecated. Please switch to not_valid_after_utc.
+  expiration = x509.not_valid_after
+Updating lineup...<class 'dict'> | {'pitcher': {'name': 'Hank Wilder', 'stats': {'this_season': {'GP': 16, 'GS': 15, 'CG': 3, 'SHO': 3, 'IP': 77.6, 'H': 99, 'R': 36, 'ER': 31, 'HR': 4, 'BB': 44, 'K': 91}, 'career': {'GP': 176, 'GS': 150, 'CG': 9, 'SHO': 12, 'IP': 771.7, 'H': 1062, 'R': 361, 'ER': 310, 'HR': 34, 'BB': 521, 'K': 874}}}, 'fielders': [{'position': 'CF', 'name': 'Grant Trout', 'hand': 'Right', 'avg': 0.326, 'hr': 30, 'rbi': 83, 'notes': 'Exceptional rookie, speed and power combo.'}, {'position': 'SS', 'name': 'Aris Aybar', 'hand': 'Both', 'avg': 0.29, 'hr': 8, 'rbi': 45, 'notes': 'Switch-hitter, good contact, solid average.'}, {'position': '1B', 'name': 'Sandeep Pujols', 'hand': 'Right', 'avg': 0.285, 'hr': 30, 'rbi': 105, 'notes': 'Still potent, but declining from peak.'}, {'position': 'RF', 'name': 'Jaime Hunter', 'hand': 'Right', 'avg': 0.313, 'hr': 16, 'rbi': 92, 'notes': 'Consistent hitter, good average and RBIs.'}, {'position': 'DH', 'name': 'Francis Trumbo', 'hand': 'Right', 'avg': 0.268, 'hr': 32, 'rbi': 95, 'notes': 'Big power, high strikeout, solid production.'}, {'position': 'LF', 'name': 'Maurice Mathers', 'hand': 'Right', 'avg': 0.23, 'hr': 11, 'rbi': 29, 'notes': 'Struggling veteran, low average, limited power.'}, {'position': '2B', 'name': 'Dre Kendrick', 'hand': 'Right', 'avg': 0.287, 'hr': 8, 'rbi': 67, 'notes': 'Solid contact hitter, decent average.'}, {'position': '3B', 'name': 'Jose Callaspo', 'hand': 'Both', 'avg': 0.252, 'hr': 10, 'rbi': 53, 'notes': 'Decent contact, switch-hitter, average power.'}, {'position': 'C', 'name': 'Jesus Iannetta', 'hand': 'Right', 'avg': 0.24, 'hr': 9, 'rbi': 26, 'notes': 'Some power, lower batting average overall.'}]}
+INFO:     127.0.0.1:36534 - "POST /game/lineup HTTP/1.1" 200 OK
+INFO:     ('127.0.0.1', 41692) - "WebSocket /game/streaming" [accepted]
+INFO:     connection open
+/usr/local/google/home/kalschi/solutions/backup/smart-npc-cleanup/homerun/backend/smartnpc/src/.venv/lib/python3.12/site-packages/google/cloud/sql/connector/refresh_utils.py:214: CryptographyDeprecationWarning: Properties that return a naïve datetime object have been deprecated. Please switch to not_valid_after_utc.
+  expiration = x509.not_valid_after
+/usr/local/google/home/kalschi/solutions/backup/smart-npc-cleanup/homerun/backend/smartnpc/src/.venv/lib/python3.12/site-packages/google/cloud/sql/connector/refresh_utils.py:214: CryptographyDeprecationWarning: Properties that return a naïve datetime object have been deprecated. Please switch to not_valid_after_utc.
+  expiration = x509.not_valid_after
+* websocket connection accepted
+* websocket request received
+* temperature=0
+* getting key=baseball/5d44cd4f-6473-4333-af84-8e7db8693020/Red/lineup
+self.__key(key)=game/baseball/5d44cd4f-6473-4333-af84-8e7db8693020/Red/lineup
+* getting key=baseball/5d44cd4f-6473-4333-af84-8e7db8693020/Blue/lineup
+self.__key(key)=game/baseball/5d44cd4f-6473-4333-af84-8e7db8693020/Blue/lineup
+chat_streaming...
+{'message': '* get_scene: TACTICS_SELECTION_20250317_011 | baseball'}
+* getting key=baseball/TACTICS_SELECTION_20250317_011
+self.__key(key)=scenes/baseball/TACTICS_SELECTION_20250317_011
+* no baseball/TACTICS_SELECTION_20250317_011:scenes/baseball/TACTICS_SELECTION_20250317_011
+* getting key=baseball/TACTICS_SELECTION_20250317_011/STREAMING_GET_SUGGESTIONS
+self.__key(key)=prompts/baseball/TACTICS_SELECTION_20250317_011/STREAMING_GET_SUGGESTIONS
+* no baseball/TACTICS_SELECTION_20250317_011/STREAMING_GET_SUGGESTIONS:prompts/baseball/TACTICS_SELECTION_20250317_011/STREAMING_GET_SUGGESTIONS
+* getting key=baseball/TACTICS_SELECTION_20250317_011
+self.__key(key)=scenes/baseball/TACTICS_SELECTION_20250317_011
+* LLM_BACKEND=vLLM
+** chunk **
+** _process_text_vllm: >>>```json
+{
+  "tactics": {
+    "pitching": [
+      "Establish the fastball early, Trout swings at a lot of pitches. Let's see if he'll chase something high and tight.",
+      "Mix speeds, Trout is a great fastball hitter, but also can handle breaking balls. Keep him guessing by changing the tempo.",
+      "Focus on the outside corner, Trout pulls the ball a lot. A few pitches out there might make him protect the plate."
+    ],
+    "batting": [
+      "Look for a fastball. Trout's aggressive, so be ready to jump on anything early in the zone.",
+      "Take a pitch or two, see what he gives you. Trout can get jumpy, and we want to exploit it.",
+      "Drive the ball to right field. Trout is fast but a bit less athletic as he goes to right."
+    ]
+  },
+  "recommendations": {
+    "pitching": "Pitching tactic 0: Establish the fastball. Trout is aggressive, so let's see if he'll chase a high pitch. It's important to get ahead in the count.",
+    "batting": "Batting tactic 0: Look for a fastball. Trout is aggressive, so anticipate a fastball early in the count. "
+  },
+  "outcomes": {
+    "0.0": {
+      "outcome": "Groundout to shortstop.",
+      "game_state": {
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "outs": 1,
+        "runs": 0
+      },
+      "title": "Groundout"
+    },
+    "0.1": {
+      "outcome": "Strikeout swinging.",
+      "game_state": {
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "outs": 1,
+        "runs": 0
+      },
+      "title": "Strikeout"
+    },
+    "0.2": {
+      "outcome": "Single to center field.",
+      "game_state": {
+        "r1": true,
+        "r2": false,
+        "r3": false,
+        "outs": 0,
+        "runs": 0
+      },
+      "title": "Single"
+    },
+    "1.0": {
+      "outcome": "Fastball, foul ball, strike three.",
+      "game_state": {
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "outs": 1,
+        "runs": 0
+      },
+      "title": "Strikeout"
+    },
+    "1.1": {
+      "outcome": "Walk.",
+      "game_state": {
+        "r1": true,
+        "r2": false,
+        "r3": false,
+        "outs": 0,
+        "runs": 0
+      },
+      "title": "Walk"
+    },
+    "1.2": {
+      "outcome": "Line drive to right field, out.",
+      "game_state": {
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "outs": 1,
+        "runs": 0
+      },
+      "title": "Lineout"
+    },
+    "2.0": {
+      "outcome": "Double to left-center field.",
+      "game_state": {
+        "r1": false,
+        "r2": true,
+        "r3": true,
+        "outs": 0,
+        "runs": 0
+      },
+      "title": "Double"
+    },
+    "2.1": {
+      "outcome": "Foul tip, strike three.",
+      "game_state": {
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "outs": 1,
+        "runs": 0
+      },
+      "title": "Strikeout"
+    },
+    "2.2": {
+      "outcome": "Fly out to left field.",
+      "game_state": {
+          "r1": false,
+          "r2": false,
+          "r3": false,
+          "outs": 1,
+          "runs": 0
+      },
+      "title": "Flyout"
+    }
+  }
+}
+```<<<
+** _process_text_vllm:1
+** _process_text_vllm:2
+** _process_text_vllm:3
+** _process_text_vllm:4
+** _process_text_vllm:1
+_process_text_vllm:self._full_text::["\n{\n  \"tactics\": {\n    \"pitching\": [\n      \"Establish the fastball early, Trout swings at a lot of pitches. Let's see if he'll chase something high and tight.\",\n      \"Mix speeds, Trout is a great fastball hitter, but also can handle breaking balls. Keep him guessing by changing the tempo.\",\n      \"Focus on the outside corner, Trout pulls the ball a lot. A few pitches out there might make him protect the plate.\"\n    ],\n    \"batting\": [\n      \"Look for a fastball. Trout's aggressive, so be ready to jump on anything early in the zone.\",\n      \"Take a pitch or two, see what he gives you. Trout can get jumpy, and we want to exploit it.\",\n      \"Drive the ball to right field. Trout is fast but a bit less athletic as he goes to right.\"\n    ]\n  },\n  \"recommendations\": {\n    \"pitching\": \"Pitching tactic 0: Establish the fastball. Trout is aggressive, so let's see if he'll chase a high pitch. It's important to get ahead in the count.\",\n    \"batting\": \"Batting tactic 0: Look for a fastball. Trout is aggressive, so anticipate a fastball early in the count. \"\n  },\n  \"outcomes\": {\n    \"0.0\": {\n      \"outcome\": \"Groundout to shortstop.\",\n      \"game_state\": {\n        \"r1\": false,\n        \"r2\": false,\n        \"r3\": false,\n        \"outs\": 1,\n        \"runs\": 0\n      },\n      \"title\": \"Groundout\"\n    },\n    \"0.1\": {\n      \"outcome\": \"Strikeout swinging.\",\n      \"game_state\": {\n        \"r1\": false,\n        \"r2\": false,\n        \"r3\": false,\n        \"outs\": 1,\n        \"runs\": 0\n      },\n      \"title\": \"Strikeout\"\n    },\n    \"0.2\": {\n      \"outcome\": \"Single to center field.\",\n      \"game_state\": {\n        \"r1\": true,\n        \"r2\": false,\n        \"r3\": false,\n        \"outs\": 0,\n        \"runs\": 0\n      },\n      \"title\": \"Single\"\n    },\n    \"1.0\": {\n      \"outcome\": \"Fastball, foul ball, strike three.\",\n      \"game_state\": {\n        \"r1\": false,\n        \"r2\": false,\n        \"r3\": false,\n        \"outs\": 1,\n        \"runs\": 0\n      },\n      \"title\": \"Strikeout\"\n    },\n    \"1.1\": {\n      \"outcome\": \"Walk.\",\n      \"game_state\": {\n        \"r1\": true,\n        \"r2\": false,\n        \"r3\": false,\n        \"outs\": 0,\n        \"runs\": 0\n      },\n      \"title\": \"Walk\"\n    },\n    \"1.2\": {\n      \"outcome\": \"Line drive to right field, out.\",\n      \"game_state\": {\n        \"r1\": false,\n        \"r2\": false,\n        \"r3\": false,\n        \"outs\": 1,\n        \"runs\": 0\n      },\n      \"title\": \"Lineout\"\n    },\n    \"2.0\": {\n      \"outcome\": \"Double to left-center field.\",\n      \"game_state\": {\n        \"r1\": false,\n        \"r2\": true,\n        \"r3\": true,\n        \"outs\": 0,\n        \"runs\": 0\n      },\n      \"title\": \"Double\"\n    },\n    \"2.1\": {\n      \"outcome\": \"Foul tip, strike three.\",\n      \"game_state\": {\n        \"r1\": false,\n        \"r2\": false,\n        \"r3\": false,\n        \"outs\": 1,\n        \"runs\": 0\n      },\n      \"title\": \"Strikeout\"\n    },\n    \"2.2\": {\n      \"outcome\": \"Fly out to left field.\",\n      \"game_state\": {\n          \"r1\": false,\n          \"r2\": false,\n          \"r3\": false,\n          \"outs\": 1,\n          \"runs\": 0\n      },\n      \"title\": \"Flyout\"\n    }\n  }\n}\n"]
+* str_item:
+{
+  "tactics": {
+    "pitching": [
+      "Establish the fastball early, Trout swings at a lot of pitches. Let's see if he'll chase something high and tight.",
+      "Mix speeds, Trout is a great fastball hitter, but also can handle breaking balls. Keep him guessing by changing the tempo.",
+      "Focus on the outside corner, Trout pulls the ball a lot. A few pitches out there might make him protect the plate."
+    ],
+    "batting": [
+      "Look for a fastball. Trout's aggressive, so be ready to jump on anything early in the zone.",
+      "Take a pitch or two, see what he gives you. Trout can get jumpy, and we want to exploit it.",
+      "Drive the ball to right field. Trout is fast but a bit less athletic as he goes to right."
+    ]
+  },
+  "recommendations": {
+    "pitching": "Pitching tactic 0: Establish the fastball. Trout is aggressive, so let's see if he'll chase a high pitch. It's important to get ahead in the count.",
+    "batting": "Batting tactic 0: Look for a fastball. Trout is aggressive, so anticipate a fastball early in the count. "
+  },
+  "outcomes": {
+    "0.0": {
+      "outcome": "Groundout to shortstop.",
+      "game_state": {
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "outs": 1,
+        "runs": 0
+      },
+      "title": "Groundout"
+    },
+    "0.1": {
+      "outcome": "Strikeout swinging.",
+      "game_state": {
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "outs": 1,
+        "runs": 0
+      },
+      "title": "Strikeout"
+    },
+    "0.2": {
+      "outcome": "Single to center field.",
+      "game_state": {
+        "r1": true,
+        "r2": false,
+        "r3": false,
+        "outs": 0,
+        "runs": 0
+      },
+      "title": "Single"
+    },
+    "1.0": {
+      "outcome": "Fastball, foul ball, strike three.",
+      "game_state": {
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "outs": 1,
+        "runs": 0
+      },
+      "title": "Strikeout"
+    },
+    "1.1": {
+      "outcome": "Walk.",
+      "game_state": {
+        "r1": true,
+        "r2": false,
+        "r3": false,
+        "outs": 0,
+        "runs": 0
+      },
+      "title": "Walk"
+    },
+    "1.2": {
+      "outcome": "Line drive to right field, out.",
+      "game_state": {
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "outs": 1,
+        "runs": 0
+      },
+      "title": "Lineout"
+    },
+    "2.0": {
+      "outcome": "Double to left-center field.",
+      "game_state": {
+        "r1": false,
+        "r2": true,
+        "r3": true,
+        "outs": 0,
+        "runs": 0
+      },
+      "title": "Double"
+    },
+    "2.1": {
+      "outcome": "Foul tip, strike three.",
+      "game_state": {
+        "r1": false,
+        "r2": false,
+        "r3": false,
+        "outs": 1,
+        "runs": 0
+      },
+      "title": "Strikeout"
+    },
+    "2.2": {
+      "outcome": "Fly out to left field.",
+      "game_state": {
+          "r1": false,
+          "r2": false,
+          "r3": false,
+          "outs": 1,
+          "runs": 0
+      },
+      "title": "Flyout"
+    }
+  }
+}
