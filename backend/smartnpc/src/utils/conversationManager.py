@@ -30,6 +30,7 @@ from utils.database import DataConnection
 from utils.quickstartWrapper import quick_start_wrapper
 from vertexai.preview import generative_models
 from vertexai.generative_models import GenerativeModel
+from utils.vLLMGemma3Wrapper import vllm_gemma3_wrapper
 
 EMBEDDING_MODEL_NAME = "text-multilingual-embedding-002"
 TEXT_GENERATION_MODEL_NAME = "gemini-1.5-flash-001"
@@ -168,7 +169,6 @@ class ConversationManager():
         history = self._conversation_history.get(key=key)
         print(f"* LLM_BACKEND={LLM_BACKEND}")
         if LLM_BACKEND == "vLLM":
-            from utils.vLLMGemma3Wrapper import vllm_gemma3_wrapper
             model = vllm_gemma3_wrapper(
                 vllm_host=self._config["gcp"]["vllm_host"],
                 system_instruction=prompt.prompt_template

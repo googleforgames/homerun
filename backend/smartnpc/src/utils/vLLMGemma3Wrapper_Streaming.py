@@ -44,7 +44,8 @@ class vllm_gemma3_wrapper():
         """
         self.system_instruction = system_instruction
         self.model_name = model_name
-        self.host = f"{vllm_host}/v1/chat/completions"
+        # self.host = f"{vllm_host}/v1/chat/completions"
+        self.host = f"{vllm_host}/v1/completions"
         self.history = []
         self.logger = logging.getLogger("smart-npc")
         self.logger.setLevel(logging.DEBUG)
@@ -75,7 +76,7 @@ class vllm_gemma3_wrapper():
         """
         self.logger.info(
 """
-=====================
+==== STREAMING =====
 * System Instruction:
 %s
 * Final Player Input:
@@ -85,75 +86,41 @@ class vllm_gemma3_wrapper():
 self.system_instruction,
 query[0]
         )
+        start = None
+        end = None
         request = {
+            "stream": STREAMING,
             "model": self.model_name,
-            "messages": [
-                {
-                    "role": "system",
-                    "content": self.system_instruction
-                },
-                {
-                "role": "user",
-                "content": os.linesep.join(query)
-                }
-            ]
+            "prompt": f"{self.system_instruction}\n{os.linesep.join(query)}",
+            "max_tokens": 7384,
+            "max_model_len": 9000
         }
-        try:
-            response = requests.post(url=self.host, json=request, timeout=120, headers={
+        start = datetime.datetime.now()
+        with requests.post(url=self.host, json=request, timeout=120, stream=STREAMING, headers={
                                         "Content-Type": "application/json"
                                     }
-                                )
-        except Exception as e:
-            self.logger.error("* Request:%s", json.dumps(request))
-            self.logger.error("* Exception:%s", f"{e}")
-            raise e
-
-        if self.history is None:
-            self.history = []
-        if response.status_code == 200:
-            if STREAMING:
-                for chunk in response.iter_lines(chunk_size=None):
-                    if chunk:
-                        decoded_chunk = chunk.decode('utf-8')
-                        end = datetime.datetime.now()
-                        text = ""
-                        for line in decoded_chunk.splitlines():
-                            if line.startswith("data: "):
-                                json_data_str = line[len("data: "):].strip()
-                                try:
-                                    data = json.loads(json_data_str)
-                                    print(json.dumps(data, indent=2))
-                                    if data["choices"] and data["choices"][0]["text"]:
-                                        text = text + data["choices"][0]["text"]
-                                except json.JSONDecodeError:
-                                    pass
+                                ) as response:
+            response.raise_for_status()
+            print("Parsing response")
+            for chunk in response.iter_lines(chunk_size=None):
+                if chunk:
+                    decoded_chunk = chunk.decode('utf-8')
+                    print(f"** [{datetime.datetime.now()}]STREAMING:chukn:{chunk}")
+                    end = datetime.datetime.now()
+                    print(f"** took: {(end - start).seconds} seconds.")
+                    # yield chunk
+                    text = ""
+                    for line in decoded_chunk.splitlines():
+                        if line.startswith("data: "):
+                            json_data_str = line[len("data: "):].strip()
+                            try:
+                                data = json.loads(json_data_str)
+                                print(json.dumps(data, indent=2))
+                                if data["choices"] and data["choices"][0]["text"]:
+                                    text = text + data["choices"][0]["text"]
+                            except json.JSONDecodeError:
+                                pass
                         yield types.Part.from_text(text=text)
-
-            else:
-                returned_text = json.loads(
-                                            response.text.lstrip("```json").rstrip("```") # pylint: disable=line-too-long
-                                        )["choices"][0]["message"]["content"]
-                answer = {
-                    "candidates": [
-                        {
-                            "content":{
-                                "parts":[
-                                    {
-                                        "text":returned_text
-                                    }
-                                ]
-                            }
-                        }
-                    ]
-                }
-                resp = GenerationResponse.from_dict(answer)
-                return [resp]
-        else:
-            self.logger.error(
-                "error send_message:response.status_code=%s",
-                response.status_code
-            )
-            return None
 
     @property
     def models(self):
