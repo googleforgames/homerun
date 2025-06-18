@@ -24,7 +24,6 @@ rosters.
 import os
 import tomllib
 import logging
-import re
 import json
 
 from fastapi import HTTPException, WebSocket
@@ -32,8 +31,8 @@ from google import genai
 from google.genai import types
 from utils.sceneManager import SceneManager
 from utils.promptManager import PromptManager
-from models.scene import NPCSceneConversationRequest
 from utils.vLLMGemma3Wrapper_Streaming import vllm_gemma3_wrapper
+from models.scene import NPCSceneConversationRequest
 
 TOML_PATH = "config.toml" if os.environ["CONFIG_TOML_PATH"] == "" else os.environ["CONFIG_TOML_PATH"] # pylint: disable=line-too-long
 with open(TOML_PATH, "rb") as f:
@@ -236,8 +235,13 @@ async def chat_streaming(req:NPCSceneConversationRequest,
                 if json_part_key == "outcomes":
                     # Get Oneliner from vLLM
                     try:
-                        outcome_json = json.loads(json_parts[json_part_key]["text"])
-                        outcome_array = [{key:outcome_json["outcomes"][key]["outcome"]} for key in outcome_json["outcomes"].keys()]
+                        outcome_json = json.loads(
+                            json_parts[json_part_key]["text"]
+                        )
+                        outcome_array = [
+                            {
+                                key:outcome_json["outcomes"][key]["outcome"]
+                            } for key in outcome_json["outcomes"].keys()]
                         oneliners = get_vllm_predict(
                             host=config["vllm"]["vllm_host"],
                             model_name=config["vllm"]["vllm_model_name"],
@@ -276,14 +280,20 @@ async def chat_streaming(req:NPCSceneConversationRequest,
     ]
 
     """,
-                            user_query=f"{req.input}{os.linesep}** Here is the possible outcome array:\n{outcome_array}"
+                            user_query=f"""{req.input}
+
+                            ** Here is the possible outcome array:
+
+                            {outcome_array}"""
                         )
                         if oneliners is not None:
                             for oneliner in oneliners:
                                 oneliner_key = list(oneliner.keys())[0]
-                                outcome_json["outcomes"][oneliner_key]["outcome"] = oneliner[oneliner_key]
-                            json_parts[json_part_key]["text"] = json.dumps(outcome_json)
-                    except:
+                                outcome_json["outcomes"][oneliner_key]["outcome"] = oneliner[oneliner_key]   # pylint: disable=line-too-long
+                            json_parts[json_part_key]["text"] = json.dumps(
+                                                                outcome_json
+                                                            )
+                    except: # pylint: disable=bare-except
                         pass
                 await func(
                     text=json_parts[json_part_key]["text"],
@@ -306,14 +316,15 @@ def get_vllm_predict(host:str,
         types.Content(
             role="user",
             parts=[
-                types.Part.from_text(text=f"{system_instruction}{os.linesep}{user_query}")
+                types.Part.from_text(
+                    text=f"{system_instruction}{os.linesep}{user_query}"
+                )
             ]
             ),
     ]
     oneliners = ""
     for resp in vllm.generate_content_stream(
-        contents = contents,
-        model=model_name
+        contents = contents
     ):
         oneliners = oneliners + resp.text
 

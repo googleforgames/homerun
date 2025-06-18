@@ -19,7 +19,6 @@ import os
 import json
 import requests
 import logging
-import datetime
 
 from google.genai import types
 from vertexai.generative_models import GenerationResponse
@@ -107,22 +106,26 @@ f"""
         }
         print(f">>> vLLM request:\n {json.dumps(request, indent=2)}")
         print(f"*url=self.vllm_endpoint={self.vllm_endpoint}")
-        with requests.post(url=self.vllm_endpoint, json=request, timeout=120, stream=self.streaming, headers={
-                                        "Content-Type": "application/json"
-                                    }
-                                ) as response:
+        with requests.post(url=self.vllm_endpoint,
+                           json=request,
+                           timeout=120,
+                           stream=self.streaming,
+                           headers={
+                                "Content-Type": "application/json"
+                            }
+                        ) as response:
             response.raise_for_status()
             print("Parsing response")
             for chunk in response.iter_lines(chunk_size=None):
                 if chunk:
-                    decoded_chunk = chunk.decode('utf-8')
+                    decoded_chunk = chunk.decode("utf-8")
                     text = ""
                     for line in decoded_chunk.splitlines():
                         if line.startswith("data: "):
                             json_data_str = line[len("data: "):].strip()
                             try:
                                 data = json.loads(json_data_str)
-                                if data["choices"] and data["choices"][0]["text"]:
+                                if data["choices"] and data["choices"][0]["text"]:  # pylint: disable=line-too-long
                                     text = text + data["choices"][0]["text"]
                             except json.JSONDecodeError:
                                 pass
@@ -140,16 +143,12 @@ f"""
 
     def generate_content_stream(
         self,
-        contents,
-        model:str="google/gemma-3-12b-it",
-        config:types.GenerateContentConfig=None,
+        contents
     ):
         """
         Generates content in a streaming fashion.
         Args:
             contents: The content to generate from.
-            model(str): The model name.
-            config(types.GenerateContentConfig): Generation configuration.
         Returns:
             A generator that yields chunks of the response.
 
