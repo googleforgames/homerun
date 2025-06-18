@@ -4,6 +4,25 @@ This is the repository for the open source portions of the Google Cloud GenAI ga
 
 ## Before you begin
 
+### Gemma on GKE Setup
+
+This demo uses Gemma 3 on GKE to generate game content, before deploy the solution please follow [this instruction](<TODO: Add links>)
+to setup Gemma 3 model on GKE.
+
+Once you setup the Gemma 3 on GKE, please update [config.toml](./backend/smartnpc/config.app.toml.template) with the vLLM endpoint and Gemma 3 model name.
+
+```toml
+[vllm]
+vllm_model_name="<Gemma 3 model name, for example: google/gemma-3-27b-it>"
+vllm_host = "<vLLM host, for example: http://vllm.somedomain:port>"
+
+[game]
+game_id = "baseball"
+enable_validator = "False"
+# ...other configuraions...
+```
+
+### SmartNPC Backend Setup
 * Clone this repository and follow the [instructions](./backend/terraform/README.md) to setup the game backend.
 and note the following outputs provided by the backend setup:
 
