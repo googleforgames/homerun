@@ -24,6 +24,8 @@ rosters.
 import os
 import tomllib
 import logging
+import re
+import json
 
 from fastapi import HTTPException, WebSocket
 from google import genai
@@ -31,6 +33,7 @@ from google.genai import types
 from utils.sceneManager import SceneManager
 from utils.promptManager import PromptManager
 from models.scene import NPCSceneConversationRequest
+from utils.vLLMGemma3Wrapper_Streaming import vllm_gemma3_wrapper
 
 TOML_PATH = "config.toml" if os.environ["CONFIG_TOML_PATH"] == "" else os.environ["CONFIG_TOML_PATH"] # pylint: disable=line-too-long
 with open(TOML_PATH, "rb") as f:
@@ -230,8 +233,94 @@ async def chat_streaming(req:NPCSceneConversationRequest,
         for json_part_key in json_parts.keys(): # pylint: disable=consider-using-dict-items, consider-iterating-dictionary
             if (json_parts[json_part_key]["completed"] and
                     not json_parts[json_part_key]["sent"]):
+                if json_part_key == "outcomes":
+                    # Get Oneliner from vLLM
+                    try:
+                        outcome_json = json.loads(json_parts[json_part_key]["text"])
+                        outcome_array = [{key:outcome_json["outcomes"][key]["outcome"]} for key in outcome_json["outcomes"].keys()]
+                        oneliners = get_vllm_predict(
+                            host=config["vllm"]["vllm_host"],
+                            model_name=config["vllm"]["vllm_model_name"],
+                            system_instruction="""
+    # System
+
+    You are a baseball announcer.
+    You are given the lineups, 9 possible at-bat outcomes of the current at-bat and create an one-liner as an announcer.
+
+    ## Input format
+
+    Input is a json array of a dict, each represents an outcome of current at-bat
+
+    ## Input Format
+
+    ## Output format
+
+    Respond with a json array, each corresdponding to the input at-bat outcome.
+    [
+        {
+            "outcome index": "oneliner for this individual outcome",
+            ...
+        }
+    ]
+    For example:
+    [
+        {"0.0": "oneliner of the outcome 0.0"},
+        {"0.1": "oneliner of the outcome 0.1"},
+        {"0.2": "oneliner of the outcome 0.2"},
+        {"1.0": "oneliner of the outcome 1.0"},
+        {"1.1": "oneliner of the outcome 1.1"},
+        {"1.2": "oneliner of the outcome 1.2"},
+        {"2.0": "oneliner of the outcome 2.0"},
+        {"2.1": "oneliner of the outcome 2.1"},
+        {"2.2": "oneliner of the outcome 2.2"},
+    ]
+
+    """,
+                            user_query=f"{req.input}{os.linesep}** Here is the possible outcome array:\n{outcome_array}"
+                        )
+                        if oneliners is not None:
+                            for oneliner in oneliners:
+                                oneliner_key = list(oneliner.keys())[0]
+                                outcome_json["outcomes"][oneliner_key]["outcome"] = oneliner[oneliner_key]
+                            json_parts[json_part_key]["text"] = json.dumps(outcome_json)
+                    except:
+                        pass
                 await func(
                     text=json_parts[json_part_key]["text"],
                     ws=websocket,
                     req=req)
                 json_parts[json_part_key]["sent"] = True
+
+def get_vllm_predict(host:str,
+                     model_name:str,
+                     system_instruction:str,
+                     user_query:str) -> str:
+
+    vllm = vllm_gemma3_wrapper(
+        vllm_host=host,
+        model_name=model_name,
+        system_instruction=system_instruction,
+        streaming=True
+    )
+    contents = [
+        types.Content(
+            role="user",
+            parts=[
+                types.Part.from_text(text=f"{system_instruction}{os.linesep}{user_query}")
+            ]
+            ),
+    ]
+    oneliners = ""
+    for resp in vllm.generate_content_stream(
+        contents = contents,
+        model=model_name
+    ):
+        oneliners = oneliners + resp.text
+
+    print(f">>>>>> oneliners:original <<<<<<\n{oneliners}")
+    oneliners = oneliners.lstrip("```json").rstrip("```")
+    start_index = min(oneliners.index("["), oneliners.index("{"))
+    oneliners = oneliners[start_index:]
+    print(f">>>>>> oneliners:updated <<<<<<\n{oneliners}")
+
+    return json.loads(oneliners)
