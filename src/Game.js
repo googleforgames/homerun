@@ -888,6 +888,14 @@ app.ticker.add((ticker) => {
       // If any player hasn't yet made their selection, then can't proceed
       if (p.optionSelection === undefined) { return false }
     }
+    // Check if turnJSON is an array with at least one element,
+    // and if that element has a non-empty 'outcomes' array.
+    if (
+      turnJSON &&
+      turnJSON.length > 0 &&
+      turnJSON[0].outcomes &&
+      turnJSON[0].outcomes.length > 0
+    ) { return false }
     // If all players have selected options, proceed
     return true
   }
