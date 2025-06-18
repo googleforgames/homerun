@@ -328,10 +328,8 @@ def get_vllm_predict(host:str,
     ):
         oneliners = oneliners + resp.text
 
-    print(f">>>>>> oneliners:original <<<<<<\n{oneliners}")
     oneliners = oneliners.lstrip("```json").rstrip("```")
     start_index = min(oneliners.index("["), oneliners.index("{"))
     oneliners = oneliners[start_index:]
-    print(f">>>>>> oneliners:updated <<<<<<\n{oneliners}")
 
     return json.loads(oneliners)
