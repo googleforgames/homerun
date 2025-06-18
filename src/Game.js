@@ -889,8 +889,8 @@ app.ticker.add((ticker) => {
       if (p.optionSelection === undefined) { return false }
     }
     // Check if turnJSON is an array with at least one element,
-    // and if that element has a non-empty 'outcomes' array.
-    if (
+    // and if that element has a non-empty 'outcomes' array before proceeding
+    if !(
       turnJSON &&
       turnJSON.length > 0 &&
       turnJSON[0].outcomes &&
