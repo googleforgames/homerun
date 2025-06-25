@@ -7,11 +7,43 @@ you will need `npm` installed, then follow these steps:
 
 ## Before you begin
 
-### Gemma on GKE Setup
+Enable required services.
 
-This demo uses Gemma 3 on GKE to generate game content,
-before deploy the solution please follow [this instruction](<TODO: Add links>)
-to setup Gemma 3 model on GKE.
+```shell
+export PROJECT_ID=<your-project-id>
+
+gcloud services enable --project ${PROJECT_ID:?} \
+  aiplatform.googleapis.com \
+  artifactregistry.googleapis.com \
+  cloudbuild.googleapis.com \
+  cloudresourcemanager.googleapis.com \
+  compute.googleapis.com \
+  container.googleapis.com \
+  containerfilesystem.googleapis.com \
+  containerregistry.googleapis.com \
+  iam.googleapis.com \
+  servicecontrol.googleapis.com \
+  spanner.googleapis.com \
+  secretmanager.googleapis.com \
+  redis.googleapis.com \
+  vpcaccess.googleapis.com
+```
+
+The solution offers two deployment strategies:
+
+1. **Deploy with Gemma 3 model on GKE** Deploy Gemma 3 model on GKE
+and deploy the demo application on same cluster.
+
+2. **Standalone** Do not use Gemma 3 on GKE,
+and deploy a GKE cluster dedicated for the demo.
+
+## Gemma 3 on GKE Setup
+
+If you choose to setup **Deploy with Gemma 3 model on GKE** approach,
+follow the [instructions](https://document.url.local) here
+to deploy Gemma 3 model on GKE.
+
+If you choose to setup **Standalone** approach, skip to next section.
 
 Once you setup the Gemma 3 on GKE, please update
 [config.toml](./backend/smartnpc/config.app.toml.template)
@@ -28,10 +60,14 @@ enable_validator = "False"
 # ...other configuraions...
 ```
 
-### SmartNPC Backend Setup
+## Setup SmartNPC Backend
+
+### Deploy with Gemma 3 model on GKE
+
+This section describe deployment steps for Gemma 3 model on GKE.
 
 * Clone this repository and follow the
-[instructions](./backend/terraform/README.md)
+[instructions](./backend/terraform-gemma3/README.md)
 to setup the game backend.
 and note the following outputs provided by the backend setup:
 
@@ -51,6 +87,34 @@ please refer to the following documents.
 
   -   [Backend overview](./backend/smartnpc/README.md)
   -   [Deployment steps](./backend/terraform/README.md)
+
+
+### Standalone
+
+This section describe deployment steps for Standalone deployment.
+
+* Clone this repository and follow the
+[instructions](./backend/terraform-gemma3/README.md)
+to setup the game backend.
+and note the following outputs provided by the backend setup:
+
+  -   `APIURL`, and `WSURL` will be provided to you in the console output.
+  -   `APIKEY` is generated and stored in `config.toml` in the `SmartNPC`
+  example folder.
+
+* Update `APIKEY`, `APIURL`, and `WSURL` variables at the top of the
+[Game.js](./frontend/src/Game.js) file with the values you got
+from standing up the backend.
+If you haven't populated these values, you will receive a
+`Uncaught Error: Unable to start without API key and backend endpoints`
+error in your browser developer tools console.
+
+* Details of the game backend architecture, including Gemini integration,
+please refer to the following documents.
+
+  -   [Backend overview](./backend/smartnpc/README.md)
+  -   [Deployment steps](./backend/terraform/README.md)
+
 
 ## Setup the frontend
 

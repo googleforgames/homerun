@@ -232,7 +232,8 @@ async def chat_streaming(req:NPCSceneConversationRequest,
         for json_part_key in json_parts.keys(): # pylint: disable=consider-using-dict-items, consider-iterating-dictionary
             if (json_parts[json_part_key]["completed"] and
                     not json_parts[json_part_key]["sent"]):
-                if json_part_key == "outcomes":
+                if (json_part_key == "outcomes" and
+                    config["vllm"]["vllm_host"] != ""):
                     # Get Oneliner from vLLM
                     try:
                         outcome_json = json.loads(
