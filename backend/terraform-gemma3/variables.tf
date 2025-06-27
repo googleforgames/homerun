@@ -33,11 +33,6 @@ variable "google_default_zone" {
   default     = "us-central1-b"
 }
 
-# variable "vpc_id" {
-#   type        = string
-#   description = "VPC Id"
-# }
-
 variable "vpc_name" {
   type        = string
   description = "Name of the VPC"
