@@ -54,8 +54,6 @@ vertexai.init(
 app = FastAPI(debug=True)
 
 origins = [
-    "http://localhost:8080",
-    "http://localhost:8081",
     "*"
 ]
 

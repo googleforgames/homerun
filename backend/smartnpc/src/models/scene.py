@@ -17,7 +17,7 @@ FastAPI NPC chat in a scene Request / Response Models
 
 from pydantic import BaseModel
 from typing import Union
-from dataclasses import dataclass, field
+from dataclasses import field
 
 class NPCSceneConversationRequest(BaseModel):
     """
@@ -36,7 +36,7 @@ class NPCSceneConversationResponse(BaseModel):
     Represents dialogue and in-game information of a NPC conversation response.
     """
     player_id: str
-    npc_ids: list[str]=field(default_factory=list)
+    npc_ids: list[str]=field(default_factory=list) # pylint: disable=invalid-field-call
     scene_id: str=""
     response: Union[str, dict]
     in_game_time: str=""
