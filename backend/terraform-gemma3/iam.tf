@@ -42,7 +42,6 @@ module "member_roles_gke_cluster" {
   project_roles = [
     "roles/artifactregistry.reader",
     "roles/container.developer",
-    "roles/container.nodeServiceAgent",
     "roles/container.defaultNodeServiceAgent",
     "roles/logging.logWriter",
     "roles/monitoring.metricWriter",
@@ -155,5 +154,41 @@ module "member_roles_artifact_registry" {
     "roles/storage.objectViewer",
     "roles/artifactregistry.reader",
     "roles/artifactregistry.writer"
+  ]
+}
+
+# If the target cluster does not enable Workload Identity
+module "member_roles_default_compute_service_account" {
+  source                  = "terraform-google-modules/iam/google//modules/member_iam"
+  service_account_address = "${data.google_project.project.number}-compute@developer.gserviceaccount.com"
+  prefix                  = "serviceAccount"
+  project_id              = var.project_id
+  project_roles = [
+    "roles/artifactregistry.reader",
+    "roles/container.developer",
+    "roles/container.defaultNodeServiceAgent",
+    "roles/logging.logWriter",
+    "roles/monitoring.metricWriter",
+    "roles/monitoring.viewer",
+    "roles/stackdriver.resourceMetadata.writer",
+    "roles/cloudtrace.agent",
+    "roles/secretmanager.secretAccessor",
+    "roles/aiplatform.user",
+    "roles/storage.objectUser",
+    "roles/spanner.databaseUser",
+    "roles/secretmanager.secretAccessor",
+    # Cloud SQL Client
+    "roles/cloudsql.client",
+    # Log Writer
+    "roles/logging.logWriter",
+    # Able to upload and download conversation logs from GCS
+    "roles/storage.objectCreator",
+    "roles/storage.objectViewer",
+    # Need storage.objects.delete
+    "roles/storage.objectAdmin",
+    # For Gen2 cloud functions invoker
+    "roles/run.invoker",
+    # For deploying to Cloud Run using this service account
+    "roles/iam.serviceAccountUser",
   ]
 }
