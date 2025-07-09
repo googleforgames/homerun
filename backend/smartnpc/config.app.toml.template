@@ -1,4 +1,8 @@
 
+[vllm]
+vllm_model_name="google/gemma-3-27b-it"
+vllm_host = ""
+
 [game]
 game_id = "baseball"
 enable_validator = "False"
