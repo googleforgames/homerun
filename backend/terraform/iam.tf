@@ -73,6 +73,7 @@ resource "google_service_account_iam_binding" "sa_gke_aiplatform_wi_binding" {
 
 module "member_roles_gke_aiplatform" {
   source                  = "terraform-google-modules/iam/google//modules/member_iam"
+  version = "8.1.0"
   service_account_address = google_service_account.sa_gke_aiplatform.email
   prefix                  = "serviceAccount"
   project_id              = var.project_id
@@ -155,5 +156,9 @@ module "member_roles_artifact_registry" {
     "roles/storage.objectViewer",
     "roles/artifactregistry.reader",
     "roles/artifactregistry.writer"
+  ]
+  depends_on = [
+    google_iam_workload_identity_pool.sa_gke_cluster,
+    google_container_cluster.autopilot2
   ]
 }

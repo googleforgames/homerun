@@ -19,7 +19,7 @@ module "gcs" {
   prefix           = ""
   randomize_suffix = true
   source           = "terraform-google-modules/cloud-storage/google"
-  version          = ">=5.0.0"
+  version          = "~> 11.0"
   force_destroy = {
     ("${var.google_project_id}_cloudfunctions_src") = true
   }

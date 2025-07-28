@@ -14,7 +14,7 @@
 
 module "vpc" {
   source  = "terraform-google-modules/network/google"
-  version = "8.0.0"
+  version = "~> 11.1"
 
   project_id   = var.project_id
   network_name = "vpc-genai-smartnpc"
@@ -31,14 +31,14 @@ module "vpc" {
     }
   ]
 
-  secondary_ranges = {
-    "sn-usc1" = [
-      {
-        range_name    = "gke-smartnpc-pods-077c3cde"
-        ip_cidr_range = "10.15.0.0/17"
-      }
-    ]
-  }
+  # secondary_ranges = {
+  #   "sn-usc1" = [
+  #     {
+  #       range_name    = "gke-smartnpc-pods-077c3cde"
+  #       ip_cidr_range = "10.15.0.0/17"
+  #     }
+  #   ]
+  # }
 
   ingress_rules = [
     {
