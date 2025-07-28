@@ -31,15 +31,6 @@ module "vpc" {
     }
   ]
 
-  # secondary_ranges = {
-  #   "sn-usc1" = [
-  #     {
-  #       range_name    = "gke-smartnpc-pods-077c3cde"
-  #       ip_cidr_range = "10.15.0.0/17"
-  #     }
-  #   ]
-  # }
-
   ingress_rules = [
     {
       name          = "gke-fw-game-server-udp"
