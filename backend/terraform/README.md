@@ -124,6 +124,12 @@ terraform plan
 terraform apply
 ```
 
+If you see `Identify pool does not exist` error, wait a while and run `terraform apply` again.
+
+```text
+Identity Pool does not exist (<PROJECT_ID>.svc.id.goog).
+```
+
 The deployment of cloud resources can take between 5 - 10 minutes.
 
 ### 6) Setup GKE credentials

@@ -40,7 +40,7 @@ and deploy a GKE cluster dedicated for the demo.
 ## Gemma 3 on GKE Setup
 
 If you choose to setup **Deploy with Gemma 3 model on GKE** approach,
-follow the [instructions](https://github.com/GoogleCloudPlatform/accelerated-platforms/tree/int-online-tpu/platforms/gke/base/use-cases/inference-ref-arch/examples/online-inference-tpu) here
+follow the [instructions](https://github.com/GoogleCloudPlatform/accelerated-platforms/tree/main/platforms/gke/base/use-cases/inference-ref-arch/examples/online-inference-tpu) here
 to deploy Gemma 3 model on GKE.
 
 If you choose to setup **Standalone** approach, skip to next section.
@@ -94,7 +94,7 @@ please refer to the following documents.
 This section describe deployment steps for Standalone deployment.
 
 * Clone this repository and follow the
-[instructions](./backend/terraform-gemma3/README.md)
+[instructions](./backend/terraform/README.md)
 to setup the game backend.
 and note the following outputs provided by the backend setup:
 
