@@ -157,7 +157,7 @@ source .venv/bin/activate
 
 pip install --no-cache-dir --require-hashes -r requirements.txt
 
- 
+python3 ./setup-database.py
 ```
 
 ### 7) Deploy GenAI workloads on GKE
