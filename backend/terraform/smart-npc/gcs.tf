@@ -15,11 +15,11 @@
 module "gcs" {
   location         = var.google_default_region
   names            = ["${var.google_project_id}_images_bucket"]
+  version          = "11.0.0"
   project_id       = var.google_project_id
   prefix           = ""
   randomize_suffix = true
   source           = "terraform-google-modules/cloud-storage/google"
-  version          = "~> 11.0"
   force_destroy = {
     ("${var.google_project_id}_cloudfunctions_src") = true
   }

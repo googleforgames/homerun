@@ -30,7 +30,8 @@ resource "google_service_account_iam_binding" "sa_gke_cluster_wi_binding" {
     "serviceAccount:${var.project_id}.svc.id.goog[genai/k8s-sa-cluster]",
   ]
   depends_on = [
-    google_iam_workload_identity_pool.sa_gke_cluster
+    google_iam_workload_identity_pool.sa_gke_cluster,
+    google_container_cluster.autopilot2
   ]
 }
 
@@ -67,7 +68,8 @@ resource "google_service_account_iam_binding" "sa_gke_aiplatform_wi_binding" {
     "serviceAccount:${var.project_id}.svc.id.goog[genai/k8s-sa-aiplatform]",
   ]
   depends_on = [
-    google_iam_workload_identity_pool.sa_gke_cluster
+    google_iam_workload_identity_pool.sa_gke_cluster,
+    google_container_cluster.autopilot2
   ]
 }
 
@@ -112,12 +114,14 @@ resource "google_service_account_iam_binding" "sa_gke_telemetry_wi_binding" {
     "serviceAccount:${var.project_id}.svc.id.goog[genai/k8s-sa-telemetry]",
   ]
   depends_on = [
-    google_iam_workload_identity_pool.sa_gke_cluster
+    google_iam_workload_identity_pool.sa_gke_cluster,
+    google_container_cluster.autopilot2
   ]
 }
 
 module "member_roles_gke_telemetry" {
   source                  = "terraform-google-modules/iam/google//modules/member_iam"
+  version                 = "8.1.0"
   service_account_address = google_service_account.sa_gke_telemetry.email
   prefix                  = "serviceAccount"
   project_id              = var.project_id
