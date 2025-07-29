@@ -16,6 +16,13 @@ data "google_project" "project" {
   project_id = var.project_id
 }
 
+resource "time_sleep" "wait_for_resource" {
+  create_duration = "60s"
+  depends_on = [
+    google_container_cluster.autopilot2
+  ]
+}
+
 # Create a service account for GKE cluster
 resource "google_service_account" "sa_gke_cluster" {
   account_id   = "sa-gke-cluster"
@@ -30,7 +37,8 @@ resource "google_service_account_iam_binding" "sa_gke_cluster_wi_binding" {
     "serviceAccount:${var.project_id}.svc.id.goog[genai/k8s-sa-cluster]",
   ]
   depends_on = [
-    google_iam_workload_identity_pool.sa_gke_cluster
+    google_iam_workload_identity_pool.sa_gke_cluster,
+    time_sleep.wait_for_resource
   ]
 }
 
@@ -67,7 +75,8 @@ resource "google_service_account_iam_binding" "sa_gke_aiplatform_wi_binding" {
     "serviceAccount:${var.project_id}.svc.id.goog[genai/k8s-sa-aiplatform]",
   ]
   depends_on = [
-    google_iam_workload_identity_pool.sa_gke_cluster
+    google_iam_workload_identity_pool.sa_gke_cluster,
+    time_sleep.wait_for_resource
   ]
 }
 
@@ -112,7 +121,8 @@ resource "google_service_account_iam_binding" "sa_gke_telemetry_wi_binding" {
     "serviceAccount:${var.project_id}.svc.id.goog[genai/k8s-sa-telemetry]",
   ]
   depends_on = [
-    google_iam_workload_identity_pool.sa_gke_cluster
+    google_iam_workload_identity_pool.sa_gke_cluster,
+    time_sleep.wait_for_resource
   ]
 }
 
