@@ -93,6 +93,10 @@ please refer to the following documents.
 
 This section describe deployment steps for Standalone deployment.
 
+* Go to Google Cloud Console and Open `Cloud Shell`.
+
+You must execute the following deployment steps in the `Cloud Shell`.
+
 * Clone this repository and follow the
 [instructions](./backend/terraform/README.md)
 to setup the game backend.

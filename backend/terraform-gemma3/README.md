@@ -43,6 +43,8 @@ Google Cloud for which you have IAM permissions to deploy resources into.
 
 ### 1) Clone this git repository
 
+Use `Cloud Shell` to execute the following steps.
+
 ```shell
 git clone https://github.com/googleforgames/homerun.git
 
@@ -103,14 +105,6 @@ gcloud services enable --project ${PROJECT_ID:?} \
   redis.googleapis.com \
   vpcaccess.googleapis.com
 ```
-
-### Update Organization Policies as needed
-
-Update the following Organization Policies to loosen restrictions.
-
--   `compute.vmExternalIpAccess`
--   `sql.restrictAuthorizedNetworks`
--   `compute.requireShieldedVm`
 
 ### 5) Deploy infrastructure with Terraform
 
