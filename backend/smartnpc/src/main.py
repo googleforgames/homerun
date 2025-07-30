@@ -32,7 +32,7 @@ from routers.scene import router as scene_router
 from routers.baseball import router as baseball_router
 # ----------------------------------------------------------------------------#
 # Load configuration file (config.toml) and global configs
-TOML_PATH = "config.toml" if os.environ["CONFIG_TOML_PATH"] == "" else os.environ["CONFIG_TOML_PATH"] # pylint: disable=line-too-long
+TOML_PATH = os.environ.get("CONFIG_TOML_PATH", "config.toml") # pylint: disable=line-too-long
 with open(TOML_PATH, "rb") as f:
     config = tomllib.load(f)
 

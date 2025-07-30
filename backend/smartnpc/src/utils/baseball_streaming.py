@@ -34,7 +34,7 @@ from utils.promptManager import PromptManager
 from utils.vLLMGemma3Wrapper_Streaming import vllm_gemma3_wrapper
 from models.scene import NPCSceneConversationRequest
 
-TOML_PATH = "config.toml" if os.environ["CONFIG_TOML_PATH"] == "" else os.environ["CONFIG_TOML_PATH"] # pylint: disable=line-too-long
+TOML_PATH = os.environ.get("CONFIG_TOML_PATH", "config.toml") # pylint: disable=line-too-long
 with open(TOML_PATH, "rb") as f:
     config = tomllib.load(f)
 
