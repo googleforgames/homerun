@@ -227,6 +227,20 @@ async def chat_streaming(req:NPCSceneConversationRequest,
         contents = contents,
         config = generate_content_config,
     ):
+        try:
+            if chunk.usage_metadata.prompt_token_count:
+                usage_metadata = chunk.usage_metadata
+                completion_tokens = usage_metadata.total_token_count - usage_metadata.prompt_token_count # pylint: disable=line-too-long
+                usage = {
+                    "prompt_tokens": usage_metadata.prompt_token_count,
+                    "total_tokens": usage_metadata.total_token_count,
+                    "completion_tokens": completion_tokens
+                }
+                logging.info(usage)
+        except Exception as e:
+            logging.error(
+                "Exception getting token count: %s", e
+            )
         parser.parse_chunk(chunk.text)
         json_parts = parser.get_parts()
         for json_part_key in json_parts.keys(): # pylint: disable=consider-using-dict-items, consider-iterating-dictionary
