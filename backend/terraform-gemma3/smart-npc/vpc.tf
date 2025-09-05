@@ -12,28 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-resource "google_compute_router" "solution-vpc-router" {
-  name    = "${var.vpc_name}-router"
-  network = var.vpc_id
-
-  bgp {
-    asn = 64514
-  }
-}
-
-resource "google_compute_router_nat" "nat" {
-  name                               = "${var.vpc_name}-nat"
-  router                             = google_compute_router.solution-vpc-router.name
-  region                             = google_compute_router.solution-vpc-router.region
-  nat_ip_allocate_option             = "AUTO_ONLY"
-  source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
-
-  log_config {
-    enable = true
-    filter = "ERRORS_ONLY"
-  }
-}
-
 resource "google_compute_firewall" "default-allows-internal" {
   name    = "allow-${var.vpc_name}-internal"
   network = var.vpc_name

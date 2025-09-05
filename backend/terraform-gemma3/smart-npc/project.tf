@@ -33,7 +33,6 @@ resource "google_project_service" "google-cloud-apis" {
     "run.googleapis.com",
     "servicenetworking.googleapis.com",
     "secretmanager.googleapis.com",
-    "sourcerepo.googleapis.com",
     "storage.googleapis.com",
     "sqladmin.googleapis.com",
     "vpcaccess.googleapis.com"

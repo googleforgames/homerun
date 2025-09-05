@@ -1,9 +1,8 @@
-
 # Smart NPC
 
 The Smart NPC demonstrates using Gemini-1.5-Flash to
 generate NPC dialogues while maintaining the character personality,
-storyline and scene settings thorughout the conversation.
+storyline and scene settings throughout the conversation.
 
 Players are expected to achieve an objective of the scene, Gemini simulate
 involving NPCs to respond to the player while implicitly guiding the player
@@ -25,21 +24,21 @@ provides tactics suggestions to the player.
 
 ## Prerequisites
 
--   [Terraform](https://www.terraform.io/downloads.html)
--   [gcloud](https://cloud.google.com/sdk/docs/install)
--   [kubectl](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#install_kubectl)
--   [Skaffold](https://skaffold.dev/docs/)
--   [Helm](https://helm.sh/docs/intro/install/)
+- [Terraform](https://www.terraform.io/downloads.html)
+- [gcloud](https://cloud.google.com/sdk/docs/install)
+- [kubectl](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl#install_kubectl)
+- [Skaffold](https://skaffold.dev/docs/)
+- [Helm](https://helm.sh/docs/intro/install/)
 
 ## Getting started
 
-The following steps below will walk you through the setup guide for *GenAI Quickstart*.
+The following steps below will walk you through the setup guide for _GenAI Quickstart_.
 The process will walk through enabling the proper **Google Cloud APIs**,
 creating the resources via **Terraform**, and deployment of the **Kubernetes manifests**
 needed to run the project.
 
 > **Note:** These steps assume you already have a running project in
-Google Cloud for which you have IAM permissions to deploy resources into.
+> Google Cloud for which you have IAM permissions to deploy resources into.
 
 ### 1) Clone this git repository
 
@@ -120,7 +119,7 @@ subnet_name="<Target VPC subnet, the network created in GKE on Gemma 3 setup>"
 cluster_name="<Target cluster name>"
 EOF
 
-terraform init
+terraform init -upgrade
 
 terraform plan
 
@@ -139,7 +138,8 @@ export CLUSTER_NAME=<GKE Cluster Name>
 
 gcloud container clusters get-credentials ${CLUSTER_NAME} \
 --region us-central1 \
---project ${PROJECT_ID:?}
+--project ${PROJECT_ID:?} \
+--dns-endpoint
 ```
 
 Test your Kubernetes client credentials.
@@ -174,9 +174,10 @@ Deploy the Smart NPC backend
 
 ```shell
 gcloud container clusters get-credentials ${CLUSTER_NAME} --region ${LOCATION} \
---project ${PROJECT_ID}
+--project ${PROJECT_ID} \
+--dns-endpoint
 
-kubectl create ns genai
+kubectl create ns genai \
 
 kubectl create configmap -n genai \
   smart-npc-config --from-file=../smartnpc/config.toml
@@ -197,7 +198,7 @@ kubectl get svc -n genai
 # smart-npc-ssl-svc   LoadBalancer   1.2.3.4          x.x.x.x     80:30381/TCP   2m13s
 ```
 
-Access the API - You can test the application and all the APIs from here  :)
+Access the API - You can test the application and all the APIs from here :)
 
 To get the public ip address, WebSocket Uri and API Key of the service, run
 

@@ -1,9 +1,8 @@
-
 # Smart NPC
 
 The Smart NPC demonstrates using Gemini-1.5-Flash to
 generate NPC dialogues while maintaining the character personality,
-storyline and scene settings thorughout the conversation.
+storyline and scene settings throughout the conversation.
 
 Players are expected to achieve an objective of the scene, Gemini simulate
 involving NPCs to respond to the player while implicitly guiding the player
@@ -29,11 +28,11 @@ provides tactics suggestions to the player.
 
 ## Configurations
 
-*   [config.app.toml.template](./config.app.toml.template)
-contains the SQL queries for
-game logics in the `baseball` section.
+- [config.app.toml.template](./config.app.toml.template)
+  contains the SQL queries for
+  game logics in the `baseball` section.
 
-*   [const.py](./src/utils/const.py) determines if the game uses
-Google for Games Quick Start
-as the LLM backend. Update the `USE_QUICK_START` to `False`
-to invoke Gemini 2.0 API directly.
+- [const.py](./src/utils/const.py) determines if the game uses
+  Google for Games Quick Start
+  as the LLM backend. Update the `USE_QUICK_START` to `False`
+  to invoke Gemini 2.0 API directly.
