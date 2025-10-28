@@ -18,7 +18,7 @@ google-cloud-secret-manager==2.16.4
 google-cloud-core==2.3.3
 cloud-sql-python-connector[asyncpg]
 pgvector==0.2.3
-pg8000==1.30.3
+pg8000==1.31.5
 
 # Data ingestion
 pypdf==4.2.0
