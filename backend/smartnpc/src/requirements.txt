@@ -7,9 +7,7 @@
 aiofiles==24.1.0 \
     --hash=sha256:22a075c9e5a3810f0c2e48f3008c94d68c65d763b9b03857924c99e57355166c \
     --hash=sha256:b4ec55f4195e3eb5d7abd1bf7e061763e864dd4954231fb8539a0ef8bb8260e5
-    # via
-    #   cloud-sql-python-connector
-    #   unstructured-client
+    # via unstructured-client
 aiohappyeyeballs==2.6.1 \
     --hash=sha256:c3f9d0113123803ccadfdf3f0faa505bc78e6a72d1cc4806cbd719826e943558 \
     --hash=sha256:f349ba8f4b75cb25c99c5c2d84e997e485204d2902a9597802b0371f09331fb8
@@ -1451,9 +1449,9 @@ psycopg2-binary==2.9.10 \
     --hash=sha256:f8157bed2f51db683f31306aa497311b560f2265998122abe1dce6428bd86567 \
     --hash=sha256:ffe8ed017e4ed70f68b7b371d84b7d4a790368db9203dfc2d222febd3a9c8863
     # via -r requirements.in
-pyasn1==0.6.1 \
-    --hash=sha256:0d632f46f2ba09143da3a8afe9e33fb6f92fa2320ab7e886e2d0f7672af84629 \
-    --hash=sha256:6f580d2bdd84365380830acf45550f2511469f673cb4a5ae3857a3170128b034
+pyasn1==0.6.2 \
+    --hash=sha256:1eb26d860996a18e9b6ed05e7aae0e9fc21619fcee6af91cca9bad4fbea224bf \
+    --hash=sha256:9b59a2b25ba7e4f8197db7686c09fb33e658b98339fadb826e9512629017833b
     # via
     #   oauth2client
     #   pyasn1-modules
