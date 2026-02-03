@@ -7,9 +7,7 @@
 aiofiles==24.1.0 \
     --hash=sha256:22a075c9e5a3810f0c2e48f3008c94d68c65d763b9b03857924c99e57355166c \
     --hash=sha256:b4ec55f4195e3eb5d7abd1bf7e061763e864dd4954231fb8539a0ef8bb8260e5
-    # via
-    #   cloud-sql-python-connector
-    #   unstructured-client
+    # via unstructured-client
 aiohappyeyeballs==2.6.1 \
     --hash=sha256:c3f9d0113123803ccadfdf3f0faa505bc78e6a72d1cc4806cbd719826e943558 \
     --hash=sha256:f349ba8f4b75cb25c99c5c2d84e997e485204d2902a9597802b0371f09331fb8
@@ -264,10 +262,6 @@ cffi==1.17.1 \
     --hash=sha256:f7f5baafcc48261359e14bcd6d9bff6d4b28d9103847c9e136694cb0501aef87 \
     --hash=sha256:fc48c783f9c87e60831201f2cce7f3b2e4846bf4d8728eabe54d60700b318a0b
     # via cryptography
-chardet==5.2.0 \
-    --hash=sha256:1b3b6ff479a8c414bc3fa2c0852995695c4a026dcd6d0633b2dd092ca39c1cf7 \
-    --hash=sha256:e1cf59446890a00105fe7b7912492ea04b6e6f06d4b742b2c788469e34c82970
-    # via unstructured
 charset-normalizer==3.4.1 \
     --hash=sha256:0167ddc8ab6508fe81860a57dd472b2ef4060e8d378f0cc555707126830f2537 \
     --hash=sha256:01732659ba9b5b873fc117534143e4feefecf3b2078b0a6a2e925271bb6f4cfa \
@@ -361,7 +355,9 @@ charset-normalizer==3.4.1 \
     --hash=sha256:fc54db6c8593ef7d4b2a331b58653356cf04f67c960f584edb7c3d8c97e8f39e \
     --hash=sha256:fd4ec41f914fa74ad1b8304bbc634b3de73d2a0889bd32076342a573e0779e00 \
     --hash=sha256:ffc9202a29ab3920fa812879e95a9e78b2465fd10be7fcbd042899695d75e616
-    # via requests
+    # via
+    #   requests
+    #   unstructured
 click==8.1.8 \
     --hash=sha256:63c132bbbed01578a06712a2d1f497bb62d9c1c0d329b7903a866228027263b2 \
     --hash=sha256:ed53c9d8990d83c2a27deae68e4ee337473f6330c040a31d4225c9574d16096a
@@ -1977,9 +1973,9 @@ tzdata==2025.2 \
     --hash=sha256:1a403fada01ff9221ca8044d701868fa132215d84beb92242d9acd2147f667a8 \
     --hash=sha256:b60a638fcc0daffadf82fe0f57e53d06bdec2f36c4df66280ae79bce6bd6f2b9
     # via pandas
-unstructured==0.17.2 \
-    --hash=sha256:527dd26a4b273aebef2f9119c9d4f0d0ce17640038d92296d23abe89be123840 \
-    --hash=sha256:af18c3caef0a6c562cf77e34ee8b6ff522b605031d2336ffe565df66f126aa46
+unstructured==0.18.18 \
+    --hash=sha256:cfe6c84a36d374e5767930e13cfc10622357b3b68a5b7c735fdb1eeca08c6b57 \
+    --hash=sha256:d5189bdd5e2a1c5ed3cc289cfb4fb483c6f2dd544b42744bdc5b81d3388ea527
     # via -r requirements.in
 unstructured-client==0.34.0 \
     --hash=sha256:3180d2030695fe6279e7f6f3a1fb92b4038f26c5706e6f9dfe063f816893b734 \
