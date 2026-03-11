@@ -7,7 +7,7 @@ pgvector==0.2.3
 pg8000==1.30.3
 
 # Data ingestion
-pypdf==4.2.0
+pypdf==6.8.0
 cloud-sql-python-connector[pg8000]
 SQLAlchemy==2.0.7
 google-cloud-aiplatform==1.59.0
