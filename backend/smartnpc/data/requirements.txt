@@ -1794,9 +1794,9 @@ pymysql==1.1.1 \
     --hash=sha256:4de15da4c61dc132f4fb9ab763063e693d521a80fd0e87943b9a453dd4c19d6c \
     --hash=sha256:e127611aaf2b417403c60bf4dc570124aeb4a57f5f37b8e95ae399a42f904cd0
     # via cloud-sql-python-connector
-pypdf==4.2.0 \
-    --hash=sha256:dc035581664e0ad717e3492acebc1a5fc23dba759e788e3d4a9fc9b1a32e72c1 \
-    --hash=sha256:fe63f3f7d1dcda1c9374421a94c1bba6c6f8c4a62173a59b64ffd52058f846b1
+pypdf==6.8.0 \
+    --hash=sha256:2a025080a8dd73f48123c89c57174a5ff3806c71763ee4e49572dc90454943c7 \
+    --hash=sha256:cb7eaeaa4133ce76f762184069a854e03f4d9a08568f0e0623f7ea810407833b
     # via
     #   -r requirements.in
     #   unstructured-client
