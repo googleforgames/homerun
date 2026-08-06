@@ -40,7 +40,7 @@ and deploy a GKE cluster dedicated for the demo.
 ## Gemma 3 on GKE Setup
 
 If you choose to setup **Deploy with Gemma 3 model on GKE** approach,
-follow the [instructions](https://github.com/GoogleCloudPlatform/accelerated-platforms/tree/main/platforms/gke/base/use-cases/inference-ref-arch/examples/online-inference-tpu) here
+follow the [instructions](https://github.com/GoogleCloudPlatform/accelerated-platforms/blob/main/docs/platforms/gke/base/use-cases/inference-ref-arch/online-inference-tpu/vllm-with-hf-model.md) here
 to deploy Gemma 3 model on GKE.
 
 If you choose to setup **Standalone** approach, skip to next section.
